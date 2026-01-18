@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRENESIS YouTube Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-download"></i> FRENESIS YouTube Downloader</h1>
+            <p class="subtitle">Download YouTube videos & audio in MP4/MP3 format</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="url-input">
+                    <input type="text" id="urlInput" placeholder="Paste YouTube URL here...">
+                    <button id="pasteBtn"><i class="fas fa-paste"></i> Paste</button>
+                </div>
+                
+                <div class="format-selection">
+                    <h3><i class="fas fa-cog"></i> Download Options</h3>
+                    <div class="format-grid">
+                        <div class="format-option active" data-format="mp4">
+                            <i class="fas fa-video"></i>
+                            <span>MP4 Video</span>
+                            <div class="quality-selector">
+                                <select id="videoQuality">
+                                    <option value="best">Best Quality</option>
+                                    <option value="1080">1080p</option>
+                                    <option value="720" selected>720p</option>
+                                    <option value="480">480p</option>
+                                    <option value="360">360p</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="format-option" data-format="mp3">
+                            <i class="fas fa-music"></i>
+                            <span>MP3 Audio</span>
+                            <div class="quality-selector">
+                                <select id="audioQuality">
+                                    <option value="320">320 kbps (Best)</option>
+                                    <option value="256">256 kbps</option>
+                                    <option value="192" selected>192 kbps</option>
+                                    <option value="128">128 kbps</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="format-option" data-format="playlist">
+                            <i class="fas fa-list"></i>
+                            <span>Playlist</span>
+                            <div class="quality-selector">
+                                <select id="playlistQuality">
+                                    <option value="best">Best Quality</option>
+                                    <option value="720">720p</option>
+                                    <option value="480">480p</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="advanced-options">
+                    <h3><i class="fas fa-sliders-h"></i> Advanced Options</h3>
+                    <div class="options-grid">
+                        <label>
+                            <input type="checkbox" id="subtitles" checked>
+                            Include subtitles (if available)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="metadata" checked>
+                            Add metadata (title, artist)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="thumbnail" checked>
+                            Embed thumbnail
+                        </label>
+                    </div>
+                </div>
+                
+                <button id="downloadBtn" class="download-btn">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+            
+            <div class="progress-section" style="display: none;">
+                <h3><i class="fas fa-spinner fa-spin"></i> Downloading...</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <div class="progress-text" id="progressText">0%</div>
+                </div>
+                <div class="progress-details">
+                    <div id="downloadDetails">Initializing download...</div>
+                    <div id="downloadSpeed">Speed: --</div>
+                    <div id="timeRemaining">ETA: --</div>
+                </div>
+                <button id="cancelBtn" class="cancel-btn">
+                    <i class="fas fa-times"></i> Cancel Download
+                </button>
+            </div>
+            
+            <div class="history-section">
+                <h3><i class="fas fa-history"></i> Recent Downloads</h3>
+                <div id="downloadHistory">
+                    <!-- Downloads will appear here -->
+                    <div class="empty-history">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <p>No downloads yet. Paste a URL above to start!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> How to Use</h3>
+                <ol>
+                    <li>Copy any YouTube video URL</li>
+                    <li>Paste it in the input field above</li>
+                    <li>Select MP4 (video) or MP3 (audio) format</li>
+                    <li>Click "Download Now"</li>
+                    <li>Your file will download automatically</li>
+                </ol>
+                <div class="warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Disclaimer:</strong> Only download content you have permission to download.
+                    Respect copyright laws.
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>FRENESIS YouTube Downloader v2.0 | Open Source Project</p>
+            <div class="footer-links">
+                <a href="https://github.com/yourusername/frenesis-yt-downloader" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="#" id="reportIssue">
+                    <i class="fas fa-bug"></i> Report Issue
+                </a>
+                <a href="#" id="clearHistory">
+                    <i class="fas fa-trash"></i> Clear History
+                </a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Video Info Modal -->
+    <div id="videoInfoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-info-circle"></i> Video Information</h3>
+            <div id="videoInfoContent">
+                Loading video info...
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
